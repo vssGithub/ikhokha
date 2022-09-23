@@ -13,12 +13,11 @@ public class Main {
 		File docPath = new File("docs");
 		File[] commentFiles = docPath.listFiles((d, n) -> n.endsWith(".txt"));
 		
+		CommentAnalyzer commentAnalyzer = new CommentAnalyzer();
+		
 		for (File commentFile : commentFiles) {
-			
-			CommentAnalyzer commentAnalyzer = new CommentAnalyzer(commentFile);
-			Map<String, Integer> fileResults = commentAnalyzer.analyze();
+			Map<String, Integer> fileResults = commentAnalyzer.analyze(commentFile);
 			addReportResults(fileResults, totalResults);
-						
 		}
 		
 		System.out.println("RESULTS\n=======");

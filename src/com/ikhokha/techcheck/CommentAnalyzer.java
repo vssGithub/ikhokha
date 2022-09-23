@@ -10,15 +10,13 @@ import java.util.Map;
 
 public class CommentAnalyzer {
 	
-	private File file;
+	Map<String, Integer> resultsMap;
 	
-	public CommentAnalyzer(File file) {
-		this.file = file;
+	public CommentAnalyzer() {
+		resultsMap = new HashMap<>();
 	}
 	
-	public Map<String, Integer> analyze() {
-		
-		Map<String, Integer> resultsMap = new HashMap<>();
+	public Map<String, Integer> analyze(File file) {
 		
 		try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
 			
