@@ -13,11 +13,26 @@ public class Main {
 		File docPath = new File("docs");
 		File[] commentFiles = docPath.listFiles((d, n) -> n.endsWith(".txt"));
 		
+		/*
 		CommentAnalyzer commentAnalyzer = new CommentAnalyzer();
 		
 		for (File commentFile : commentFiles) {
 			Map<String, Integer> fileResults = commentAnalyzer.analyze(commentFile);
 			addReportResults(fileResults, totalResults);
+		}
+		
+		System.out.println("RESULTS\n=======");
+		totalResults.forEach((k,v) -> System.out.println(k + " : " + v));
+		*/
+		
+		
+		
+		MetricAnalyzer metricAnalyzer = new MetricAnalyzer(new MoverMetric());
+		
+		for (File commentFile : commentFiles) {
+			//TODO: rework this!
+			Map<String, Integer> test = metricAnalyzer.AnalyzeMetric(commentFile);
+			addReportResults(test, totalResults);
 		}
 		
 		System.out.println("RESULTS\n=======");
