@@ -32,6 +32,7 @@ public class Main {
 		for (File commentFile : commentFiles) {
 			//TODO: rework this!
 			Map<String, Integer> test = metricAnalyzer.AnalyzeMetric(commentFile);
+			//TODO: possibly move the logging of results into MetricAnalyzer? Updated resultsMap is there..method call from here?
 			addReportResults(test, totalResults);
 		}
 		
