@@ -10,6 +10,7 @@ public class Main {
 		metric.AddMetric("Mover", new MoverMetric());
 		metric.AddMetric("Shaker", new ShakerMetric());
 		metric.AddMetric("ShortMessage", new ShortMessageMetric());
+		metric.AddMetric("Question", new QuestionMetric());
 		
 		metric.Handle();
 		
