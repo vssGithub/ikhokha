@@ -11,6 +11,7 @@ public class Main {
 		metric.AddMetric("Shaker", new ShakerMetric());
 		metric.AddMetric("ShortMessage", new ShortMessageMetric());
 		metric.AddMetric("Question", new QuestionMetric());
+		metric.AddMetric("Spam", new SpamMetric());
 		
 		metric.Handle();
 		
