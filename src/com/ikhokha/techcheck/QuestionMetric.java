@@ -7,12 +7,12 @@ public class QuestionMetric extends MetricType {
 
 	@Override
 	public void Analyze(MetricAnalyzer metricAnalyzer, String line) {
-		String targetMetric = QUESTION;
-		Pattern pattern = Pattern.compile("\\?", Pattern.CASE_INSENSITIVE);
+		String regex = "\\?";
+		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
 		boolean lineContainsMatch = pattern.matcher(line).find();
 		
 		if (lineContainsMatch) {
-			metricAnalyzer.ProcessMetric(metricAnalyzer.resultsMap, targetMetric);
+			metricAnalyzer.ProcessMetric(metricAnalyzer.resultsMap, QUESTION);
 		}
 		
 	}
