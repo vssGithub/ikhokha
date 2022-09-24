@@ -27,7 +27,7 @@ public class Main {
 		
 		
 		
-		MetricAnalyzer metricAnalyzer = new MetricAnalyzer(new MoverMetric());
+		MetricAnalyzer metricAnalyzer = new MetricAnalyzer(new ShakerMetric());
 		
 		for (File commentFile : commentFiles) {
 			//TODO: rework this!
