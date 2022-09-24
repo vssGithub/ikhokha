@@ -10,30 +10,34 @@ import java.util.Map;
 
 class MetricAnalyzer {
 	
-	public MetricType MetricType;
 	Map<String, Integer> resultsMap;
 	
-	public MetricAnalyzer(MetricType metricType) {
-		MetricType = metricType;
+	File docPath = new File("docs");
+	File[] commentFiles = docPath.listFiles((d, n) -> n.endsWith(".txt"));
+	
+	
+	public MetricAnalyzer() {
 		resultsMap = new HashMap<>();
 	}
 	
-	public Map<String, Integer> AnalyzeMetric(File file) {		
-		try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-			String line = null;
-			
-			while ((line = reader.readLine()) != null) {
-				MetricType.Analyze(this, line);
+	public Map<String, Integer> AnalyzeMetric(MetricType metricType) {
+		for (File file : commentFiles) {
+			try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+				String line = null;
+				
+				while ((line = reader.readLine()) != null) {
+					metricType.Analyze(this, line);
+				}
+				
+			} 
+			catch (FileNotFoundException e) {
+				System.out.println("File not found: " + file.getAbsolutePath());
+				e.printStackTrace();
+			} 
+			catch (IOException e) {
+				System.out.println("IO Error processing file: " + file.getAbsolutePath());
+				e.printStackTrace();
 			}
-			
-		} 
-		catch (FileNotFoundException e) {
-			System.out.println("File not found: " + file.getAbsolutePath());
-			e.printStackTrace();
-		} 
-		catch (IOException e) {
-			System.out.println("IO Error processing file: " + file.getAbsolutePath());
-			e.printStackTrace();
 		}
 		
 		return resultsMap;
@@ -42,6 +46,11 @@ class MetricAnalyzer {
 	public void ProcessMetric(Map<String, Integer> countMap, String key) {
 		countMap.putIfAbsent(key, 0);
 		countMap.put(key, countMap.get(key) + 1);
+	}
+	
+	public void CreateReport() {
+		System.out.println("RESULTS\n=======");
+		resultsMap.forEach((k,v) -> System.out.println(k + " : " + v));
 	}
 
 }
