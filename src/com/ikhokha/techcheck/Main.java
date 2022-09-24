@@ -1,39 +1,21 @@
 package com.ikhokha.techcheck;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-
 public class Main {
 
 	public static void main(String[] args) {
-		
-		Map<String, Integer> totalResults = new HashMap<>();
 				
-		File docPath = new File("docs");
-		File[] commentFiles = docPath.listFiles((d, n) -> n.endsWith(".txt"));
+		MetricAnalyzer metricAnalyzer = new MetricAnalyzer();
 		
-		CommentAnalyzer commentAnalyzer = new CommentAnalyzer();
+		MetricMediator metric = new MetricMediator(metricAnalyzer);
+		metric.AddMetric("Mover", new MoverMetric());
+		metric.AddMetric("Shaker", new ShakerMetric());
+		metric.AddMetric("ShortMessage", new ShortMessageMetric());
+		metric.AddMetric("Question", new QuestionMetric());
+		metric.AddMetric("Spam", new SpamMetric());
 		
-		for (File commentFile : commentFiles) {
-			Map<String, Integer> fileResults = commentAnalyzer.analyze(commentFile);
-			addReportResults(fileResults, totalResults);
-		}
+		metric.Handle();
 		
-		System.out.println("RESULTS\n=======");
-		totalResults.forEach((k,v) -> System.out.println(k + " : " + v));
-	}
-	
-	/**
-	 * This method adds the result counts from a source map to the target map 
-	 * @param source the source map
-	 * @param target the target map
-	 */
-	private static void addReportResults(Map<String, Integer> source, Map<String, Integer> target) {
-
-		for (Map.Entry<String, Integer> entry : source.entrySet()) {
-			target.put(entry.getKey(), entry.getValue());
-		}
+		metricAnalyzer.CreateReport();
 		
 	}
 
