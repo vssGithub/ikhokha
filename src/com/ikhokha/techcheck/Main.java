@@ -27,17 +27,19 @@ public class Main {
 		
 		
 		
-		MetricAnalyzer metricAnalyzer = new MetricAnalyzer(new ShakerMetric());
+		MetricAnalyzer metricAnalyzer = new MetricAnalyzer();
+		//metricAnalyzer.AddMetric("Mover", new MoverMetric());
+		//metricAnalyzer.AddMetric("Shaker", new ShakerMetric());
 		
-		for (File commentFile : commentFiles) {
-			//TODO: rework this!
-			Map<String, Integer> test = metricAnalyzer.AnalyzeMetric(commentFile);
-			//TODO: possibly move the logging of results into MetricAnalyzer? Updated resultsMap is there..method call from here?
-			addReportResults(test, totalResults);
-		}
+		MetricMediator metric = new MetricMediator(metricAnalyzer);
+		metric.AddMetric("Mover", new MoverMetric());
+		metric.AddMetric("Shaker", new ShakerMetric());
 		
-		System.out.println("RESULTS\n=======");
-		totalResults.forEach((k,v) -> System.out.println(k + " : " + v));
+		metric.Handle();
+		
+		metricAnalyzer.CreateReport();
+		
+
 	}
 	
 	/**
