@@ -1,6 +1,10 @@
 package com.ikhokha.techcheck;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,9 +83,29 @@ public class FileProcessor {
 	}
 	
 	private static void ReadFiles(List<File> commentFiles) {
+		String content = "";	// TODO remove..used to debug
+		
 		for (File file : commentFiles) {
 			System.out.println("processing " + file.getName() + " in thread " + Thread.currentThread().getName());
+			
+			try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+				String line = null;
+				
+				while ((line = reader.readLine()) != null) {
+					content += line + System.lineSeparator();	// TODO remove..used to debug
+				}
+			} 
+			catch (FileNotFoundException e) {
+				System.out.println("File not found: " + file.getAbsolutePath());
+				e.printStackTrace();
+			} 
+			catch (IOException e) {
+				System.out.println("IO Error processing file: " + file.getAbsolutePath());
+				e.printStackTrace();
+			}
 		}
+		
+		System.out.println("content: " + content);	// TODO remove..used to debug
 	}
 
 }
