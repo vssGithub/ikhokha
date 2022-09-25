@@ -1,5 +1,11 @@
 package com.ikhokha.techcheck;
 
+import com.ikhokha.techcheck.metrics.MoverMetric;
+import com.ikhokha.techcheck.metrics.QuestionMetric;
+import com.ikhokha.techcheck.metrics.ShakerMetric;
+import com.ikhokha.techcheck.metrics.ShortMessageMetric;
+import com.ikhokha.techcheck.metrics.SpamMetric;
+
 public class Main {
 
 	public static void main(String[] args) {
