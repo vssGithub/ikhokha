@@ -1,9 +1,11 @@
 package com.ikhokha.techcheck;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,8 @@ public class FileProcessor {
 	}
 	
 	public static void ProcessFiles() {
+		CreateCollatedResultFile();
+		
 		Thread[] threads = new Thread[NUMBER_OF_THREADS];
 		
 		final int filesPerThread = GetFilesPerThread();
@@ -83,6 +87,7 @@ public class FileProcessor {
 	}
 	
 	private static void ReadFiles(List<File> commentFiles) {
+		BufferedWriter bw = CreateBufferedWriter();
 		String content = "";	// TODO remove..used to debug
 		
 		for (File file : commentFiles) {
@@ -93,6 +98,7 @@ public class FileProcessor {
 				
 				while ((line = reader.readLine()) != null) {
 					content += line + System.lineSeparator();	// TODO remove..used to debug
+					bw.write(line + System.lineSeparator());
 				}
 			} 
 			catch (FileNotFoundException e) {
@@ -106,6 +112,47 @@ public class FileProcessor {
 		}
 		
 		System.out.println("content: " + content);	// TODO remove..used to debug
+		CloseBufferedWriter(bw);
+	}
+	
+	private static BufferedWriter CreateBufferedWriter() {
+		File target = docPath.listFiles((d, n) -> n.endsWith(".log"))[0];
+		FileWriter fw = null;
+		
+		try {
+			fw = new FileWriter(target,true);
+		} 
+		catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		return new BufferedWriter(fw);
+	}
+	
+	private static void CloseBufferedWriter(BufferedWriter bw) {
+		try {
+			bw.close();
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private static void CreateCollatedResultFile() {
+		String collatedFile = docPath.getAbsolutePath();
+		
+		try {
+			File resultFile = new File(collatedFile + "\\collatedComments.log");
+			
+			if (resultFile.exists()) {
+				resultFile.delete();
+			}
+			
+			resultFile.createNewFile();
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
