@@ -1,4 +1,4 @@
-package com.ikhokha.techcheck;
+package com.ikhokha.techcheck.processor;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

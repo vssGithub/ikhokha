@@ -1,4 +1,4 @@
-package com.ikhokha.techcheck;
+package com.ikhokha.techcheck.processor;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,7 +30,7 @@ public class FileProcessor {
         System.out.println("File Processing Started");
 		
 		for (Thread thread : threads) {
-			thread.start();			//start processing all thread
+			thread.start();			//start processing all threads
 		}
 		
 		for (Thread thread : threads) {

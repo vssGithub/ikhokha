@@ -1,15 +1,18 @@
-package com.ikhokha.techcheck;
+package com.ikhokha.techcheck.mediator;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.ikhokha.techcheck.MetricType;
+import com.ikhokha.techcheck.strategy.MetricAnalyzer;
 
 public class MetricMediator {
 	public MetricAnalyzer MetricAnalyzer;
 	Map<String, MetricType> metricMap;
 	File collatedCommentFile;
 	
-	public MetricMediator(com.ikhokha.techcheck.MetricAnalyzer metricAnalyzer, File collatedComments) {
+	public MetricMediator(MetricAnalyzer metricAnalyzer, File collatedComments) {
 		MetricAnalyzer = metricAnalyzer;
 		metricMap = new HashMap<>();
 		collatedCommentFile = collatedComments;

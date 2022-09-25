@@ -2,8 +2,8 @@ package com.ikhokha.techcheck.metrics;
 
 import java.util.regex.Pattern;
 
-import com.ikhokha.techcheck.MetricAnalyzer;
 import com.ikhokha.techcheck.MetricType;
+import com.ikhokha.techcheck.strategy.MetricAnalyzer;
 
 public class MoverMetric extends MetricType {
 	private static final String MOVER = "mover";

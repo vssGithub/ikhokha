@@ -1,10 +1,13 @@
 package com.ikhokha.techcheck;
 
+import com.ikhokha.techcheck.mediator.MetricMediator;
 import com.ikhokha.techcheck.metrics.MoverMetric;
 import com.ikhokha.techcheck.metrics.QuestionMetric;
 import com.ikhokha.techcheck.metrics.ShakerMetric;
 import com.ikhokha.techcheck.metrics.ShortMessageMetric;
 import com.ikhokha.techcheck.metrics.SpamMetric;
+import com.ikhokha.techcheck.processor.FileProcessor;
+import com.ikhokha.techcheck.strategy.MetricAnalyzer;
 
 public class Main {
 

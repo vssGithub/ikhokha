@@ -1,4 +1,4 @@
-package com.ikhokha.techcheck;
+package com.ikhokha.techcheck.strategy;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -7,6 +7,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.ikhokha.techcheck.MetricType;
 
 public class MetricAnalyzer {
 	
