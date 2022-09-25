@@ -11,16 +11,12 @@ import java.util.Map;
 public class MetricAnalyzer {
 	
 	public Map<String, Integer> resultsMap;
-	
-	//File docPath = new File("docs");
-	//File[] commentFiles = docPath.listFiles((d, n) -> n.endsWith(".txt"));
-	
-	
+
 	public MetricAnalyzer() {
 		resultsMap = new HashMap<>();
 	}
 	
-	public Map<String, Integer> AnalyzeMetric(MetricType metricType, File collatedCommentFile) {
+	public void AnalyzeMetric(MetricType metricType, File collatedCommentFile) {
 		
 		try (BufferedReader reader = new BufferedReader(new FileReader(collatedCommentFile))) {
 			String line = null;
@@ -39,7 +35,6 @@ public class MetricAnalyzer {
 			e.printStackTrace();
 		}
 		
-		return resultsMap;
 	}
 	
 	public void ProcessMetric(Map<String, Integer> countMap, String key) {

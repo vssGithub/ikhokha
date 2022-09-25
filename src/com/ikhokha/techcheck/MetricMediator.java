@@ -9,14 +9,6 @@ public class MetricMediator {
 	Map<String, MetricType> metricMap;
 	File collatedCommentFile;
 	
-	// TODO remove...old ctor
-	/*
-	public MetricMediator(MetricAnalyzer metricAnalyzer) {
-		MetricAnalyzer = metricAnalyzer;
-		metricMap = new HashMap<>();
-	}
-	*/
-	
 	public MetricMediator(com.ikhokha.techcheck.MetricAnalyzer metricAnalyzer, File collatedComments) {
 		MetricAnalyzer = metricAnalyzer;
 		metricMap = new HashMap<>();

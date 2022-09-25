@@ -19,6 +19,9 @@ public class CommentsProcessor implements Runnable {
 	int remainingFilesToAssign;
 	static File pathToFile;
 	
+	private static final Boolean DEBUG_FILES = false;
+	private static final Boolean DEBUG_CONTENT = false;
+	
 	public CommentsProcessor () {}
 	
 	public CommentsProcessor(File[] commentFiles, int numberOfThreads, int thread, int filesPerThread, int remainingFiles, File docPath) {
@@ -64,13 +67,15 @@ public class CommentsProcessor implements Runnable {
 		String content = "";	// TODO remove..used to debug
 		
 		for (File file : commentFiles) {
-			System.out.println("processing " + file.getName() + " in thread " + Thread.currentThread().getName());
+			if (DEBUG_FILES) {
+				System.out.println("PROCESSING " + file.getName() + " in thread " + Thread.currentThread().getName());
+			}
 			
 			try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
 				String line = null;
 				
 				while ((line = reader.readLine()) != null) {
-					content += line + System.lineSeparator();	// TODO remove..used to debug
+					content += line + System.lineSeparator();
 					bw.write(line + System.lineSeparator());
 				}
 			} 
@@ -84,7 +89,10 @@ public class CommentsProcessor implements Runnable {
 			}
 		}
 		
-		System.out.println("content: " + content);	// TODO remove..used to debug
+		if (DEBUG_CONTENT) {
+			System.out.println("CONTENT:\n=======" + System.lineSeparator() + content);
+		}
+		
 		CloseBufferedWriter(bw);
 	}
 	
