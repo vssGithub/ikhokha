@@ -1,6 +1,9 @@
-package com.ikhokha.techcheck;
+package com.ikhokha.techcheck.metrics;
 
 import java.text.MessageFormat;
+
+import com.ikhokha.techcheck.MetricAnalyzer;
+import com.ikhokha.techcheck.MetricType;
 
 public class ShortMessageMetric extends MetricType {
 	private static final String SHORT_MESSAGE = "message_below_";

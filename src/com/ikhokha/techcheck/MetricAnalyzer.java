@@ -5,12 +5,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-class MetricAnalyzer {
+public class MetricAnalyzer {
 	
-	Map<String, Integer> resultsMap;
+	public Map<String, Integer> resultsMap;
 	
 	File docPath = new File("docs");
 	File[] commentFiles = docPath.listFiles((d, n) -> n.endsWith(".txt"));
@@ -21,6 +22,10 @@ class MetricAnalyzer {
 	}
 	
 	public Map<String, Integer> AnalyzeMetric(MetricType metricType) {
+//		Arrays.stream(commentFiles).forEach(f -> {
+//			System.out.println("file: " + f);
+//		});
+		
 		for (File file : commentFiles) {
 			try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
 				String line = null;

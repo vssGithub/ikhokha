@@ -1,6 +1,9 @@
-package com.ikhokha.techcheck;
+package com.ikhokha.techcheck.metrics;
 
 import java.util.regex.Pattern;
+
+import com.ikhokha.techcheck.MetricAnalyzer;
+import com.ikhokha.techcheck.MetricType;
 
 public class QuestionMetric extends MetricType {
 	private static final String QUESTION = "question";
