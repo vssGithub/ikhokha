@@ -24,6 +24,7 @@ public class FileProcessor {
 		for (int thread = 0; thread < NUMBER_OF_THREADS; thread++) {
 			final int currentThreadIndex = thread;
 			
+			// TODO remove
 			/*
 			threads[thread] = new Thread() {
 				@Override public void run() {
@@ -34,6 +35,8 @@ public class FileProcessor {
 			
 			threads[thread] = new Thread(new CommentsProcessor(commentFiles, NUMBER_OF_THREADS, currentThreadIndex, filesPerThread, remainingFiles, docPath));
 		}
+		
+        System.out.println("File Processing Started");
 		
 		for (Thread thread : threads) {
 			thread.start();			//start processing all thread
@@ -48,7 +51,7 @@ public class FileProcessor {
 			}
 		}
 		
-		System.out.println("processing complete");
+        System.out.println("File Processing Complete" + System.lineSeparator());
 	}
 
 	private static int GetFilesPerThread() {
@@ -58,6 +61,12 @@ public class FileProcessor {
 	private static int GetRemainingFiles() {
 		return commentFiles.length % NUMBER_OF_THREADS;
 	}
+	
+	public static File GetCollatedComments() {
+		return docPath.listFiles((d, n) -> n.endsWith(".log"))[0];
+	}
+	
+	// TODO remove
 	/*
 	private static void runThread(File[] commentFiles, int numberOfThreads, int thread, int filesPerThread, int remainingFiles) {
 		List<File> customerComments = new ArrayList<>();
