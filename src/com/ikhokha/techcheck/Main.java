@@ -9,10 +9,11 @@ import com.ikhokha.techcheck.metrics.SpamMetric;
 public class Main {
 
 	public static void main(String[] args) {
+		FileProcessor.ProcessFiles();
 				
 		MetricAnalyzer metricAnalyzer = new MetricAnalyzer();
 		
-		MetricMediator metric = new MetricMediator(metricAnalyzer);
+		MetricMediator metric = new MetricMediator(metricAnalyzer, FileProcessor.GetCollatedComments());
 		metric.AddMetric("Mover", new MoverMetric());
 		metric.AddMetric("Shaker", new ShakerMetric());
 		metric.AddMetric("ShortMessage", new ShortMessageMetric());
@@ -23,8 +24,9 @@ public class Main {
 		
 		metricAnalyzer.CreateReport();
 		
+		// TODO remove
 		//Fileprocessor added to test threading		
-		FileProcessor.ProcessFiles();
+		//FileProcessor.ProcessFiles();
 		
 	}
 
