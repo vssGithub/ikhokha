@@ -23,6 +23,9 @@ public class Main {
 		
 		metricAnalyzer.CreateReport();
 		
+		//Fileprocessor added to test threading		
+		FileProcessor.ProcessFiles();
+		
 	}
 
 }
